@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/', function () {
-    return view('welcome');
-});
+// Persons
 Route::post('/persons/insert', 'PersonController@insert');
 Route::get('/persons/list','PersonController@list');
 Route::get('/persons','PersonController@show_form');
+Route::get('/persons/{id}', 'PersonController@show_person');
+Route::post('/persons/update/{id}', 'PersonController@update');
+// Sample Route with controller
 //Route::get('/home', 'HomeController@index')->name('home')->middleware('auth','two_factor');

@@ -66,21 +66,33 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            <!--AUTH links-->
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">Register</a>
+                    @endauth
+                </div>
+            @endif
+            <!---->
             <div class="content">
                 <div class="title m-b-md">
-                    List of Names
-                    
+                    Laravel
                 </div>
 
-                <div class="links">
-                <!--Check data list-->
-                    @if($users)
-                        @foreach($users as $user) 
-                            <td>{{$user->id}}</td>
-                            <td>{{$user->name}}</td>
-                        @endforeach
-                    @endif
+                @yield('content');
+                <!--Add Name Form Here-->
+                <div class="container">
+                    <h3>Give me your name:</h3>
+                    <form method="get" action="/persons/insert" style="margin-top:20px">
+                        <input type="text" name="name" value="" required/>
+                        <input type="submit" value="Add">
+                    </form>
                 </div>
+                <!--End Form-->
 
             </div>
         </div>
